@@ -1,0 +1,42 @@
+installing virtualenv
+    pip install virtualenv
+
+creating virtualenv 
+    python -m venv C:\Users\Lenovo\Desktop\SGS\venv
+    (put your directory)
+
+allowing policy access
+    Set-ExecutionPolicy RemoteSigned -Scope Process
+
+activating virtualenv
+    venv\scripts\activate
+
+installing django
+    pip install django
+
+installing necessary modules
+    pip install django-import-export
+    pip install django-cors-headers
+    pip install pandas
+    pip install xlsxwriter
+
+
+running django server
+    py manage.py runserver
+
+
+
+
+to deactivate venv
+    venv\scripts\deactivate
+
+clear browser cache
+    Ctrl + F5
+
+
+venv activate then 
+python manage.py shell
+
+
+python manage.py createsuperuser
+

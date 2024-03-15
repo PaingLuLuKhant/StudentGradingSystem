@@ -1,0 +1,310 @@
+
+ /* section section */
+
+ .modal{
+    margin-top: 80px;
+}
+/* Add this CSS to your <style> tag or external stylesheet */
+body {
+    overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
+/* student container css */
+.StudentsContainer{
+    display: none;
+    margin-top: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: 5px;
+}
+.DataforStudentsContainer table{
+    margin-top: 10px;
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+.DataforStudentsContainer th, 
+.DataforStudentsContainer td {
+    border-collapse: collapse;
+    text-align: center;
+    border: solid 1px black;
+  }
+.DataforStudentsContainer th:nth-child(1),
+.DataforStudentsContainer td:nth-child(1),
+.DataforStudentsContainer th:nth-child(2),
+.DataforStudentsContainer td:nth-child(2) {
+    width: 40%;
+}
+.DataforStudentsContainer th:nth-child(3),
+.DataforStudentsContainer td:nth-child(3) {
+    width: 20%;
+}
+/* grades container css */
+.GradesContainer{
+
+    display: none;
+}
+.RecommendContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    height: 650px; /* Set the height of each table */
+
+}
+
+/* course container css */
+.CoursesContainer{
+    display: none;
+}
+
+
+
+/* table creation */
+.gradesTablesContainer {
+    justify-content: flex-start;
+}
+
+
+.table-container h3 {
+    margin-bottom:  10px; /* Add some space between the semester name and the table */
+}
+
+.table {
+    width:  40%; /* Full width of the container */
+    border-collapse: collapse; /* Collapse borders */
+    font-family: Arial, sans-serif; /* Set preferred font family */
+    font-size:  14px; /* Adjust font size */
+}
+
+.table th, .table td {
+    padding:  8px; /* Adjust padding */
+    text-align: left; /* Align text to the left */
+    border:  1px solid #dddddd; /* Add borders */
+    border: solid 1px black;
+
+}
+
+.table th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+    color: #333; /* Darken header text color */
+    font-weight: bold; /* Make headers bold */
+}
+.table th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+    color: #333; /* Darken header text color */
+    font-weight: bold; /* Make headers bold */
+}
+
+.gradesTablesContainer .cgpaDiv{
+
+    margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+
+.gradesTablesContainer .cgpaDiv p {
+    margin: 0; 
+    font-size: 18px; /* Adjust font size as needed */
+    font-weight: bold; /* Make text bold */
+    margin-top: 10px; /* Adjust spacing as needed */
+    font-style: italic; /* Italicize text */
+    color: #555; 
+}
+
+.cgpa-display table {
+
+    border-collapse: collapse; 
+    width:  50%; 
+    margin:auto;
+}
+
+.cgpa-display th, .cgpa-display td {
+    border:  1px solid black;
+    padding:  8px;
+}
+
+
+/* Style for the modal dialog */
+.modal-dialog {
+    max-width: 1000px; /* Set maximum width */
+}
+
+/* Style for the modal content */
+.modal-content {
+
+    border-radius: 10px; /* Add border radius */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
+
+/* Style for the modal header */
+.modal-header {
+    background-color: rgb(92,  16,  168); /* Header background color */
+    color: #fff; /* Header text color */
+    border-bottom: none; /* Remove bottom border */
+    border-radius: 10px 10px 0 0; /* Add border radius */
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-title {
+    font-weight: bold;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 0;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.bg-primary {
+    background-color: #4CAF50 !important;
+}
+#responseTextforStudent {
+    margin-top:  10px;
+    font-size:  16px;
+    color: #333;
+}
+
+
+
+
+
+
+
+/* Style for the select dropdown */
+.form-select {
+    width: 100%; /* Set the width to fill the container */
+    padding: 10px; /* Add padding */
+    border-radius: 5px; /* Add border radius */
+    border: 1px solid #ccc; /* Add border */
+}
+
+/* Style for the radio buttons and labels */
+input[type="radio"] {
+    margin-right: 10px; /* Add spacing between radio buttons */
+}
+
+label {
+    color: #333; /* Set label text color */
+}
+
+/* Style for the filter button */
+#filterStudentsButton {
+    background-color: rgb(92,  16,  168); /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Add padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Add pointer cursor */
+}
+
+/* Hover effect for the filter button */
+#filterStudentsButton:hover {
+    background-color: #0056b3; /* Darken background color on hover */
+}
+
+
+/* Add this to your CSS file */
+.error-log-modal {
+    display: none; /* Hidden by default */
+    margin-left: 800px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+    width:  400px; /* Width of the modal box */
+    height: 480px;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,  0,  0,  0.1); /* Optional: Add a subtle background color */
+}
+.special-term-not-offered {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* PROFILE section */
+
+.profile{
+    display: flex;
+    width: 98%;
+    height: 150px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    margin: auto;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+.profileContainer {
+    width: 110px; /* Set the width and height to create a square container */
+    height: 110px;
+    border-radius: 50%; /* Set border-radius to 50% to make it circular */
+    background-color: #e0e0e0; /* Set background color if needed */
+    opacity: 0.9;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 20px;
+
+}
+.profileContainer i {
+    font-size: 70px; /* Set the font size of the icon */
+    margin-top: 20px;
+    margin-left: 24px;
+}
+.profileContainer a {
+    display: block;
+    margin-top:20px;
+    margin-left:13px;
+}
+.profileUser p{
+    font-size: 34px;
+    margin-top: 35px;
+    margin-left: -400px;
+}
+.editUser button{
+    font-size: 30px;
+    border: none;
+    background-color: white;
+    margin-top: 40px;
+    margin-right: 45px;
+}
+/* hiding dropdown arrow in edit user */
+.btn-light.dropdown-toggle::after {
+    display: none;
+}
+

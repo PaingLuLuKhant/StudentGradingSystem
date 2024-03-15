@@ -1,0 +1,210 @@
+{% comment %} {% load static %}   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="loginpage">
+        
+        <div class="text-center" style="height: 700px;">
+            <div class="card-block wrap mt-5 " 
+            style="height: 550px;
+            background-color: rgb(243, 237, 237);
+            max-width: 630px; 
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 26px 58px 0 rgba(0, 0, 0, .22), 0 5px 14px 0 rgba(0, 0, 0, .18);">
+
+                <div class="card-header text-center">
+                    <img src="{% static 'images/miit_logo_wordmark_small.png' %}">
+                </div>
+                <hr>
+                <div class="card-body">
+                    <div class="row justify-content-md-center"></div>
+                        <form class="mt-5 mb-3 col-md-5" style="max-width: 500px;border-color: black; margin: auto;"
+                            method="post" action="/signin">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                <input type="username" id="username" name="username" class="form-control pn-input" placeholder="Email">
+                                <label for="username">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                                <label for="password">Password</label>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+
+                                {% endfor %}        
+                            {% endif %}
+                            
+                            <button type="submit" id="loginBtn" class="btn btn-lg btn-primary mt-3 w-100" style="background-color: rgb(92, 16, 168);">Login</button>
+                              
+                        </form>
+                </div>
+        </div>
+    
+            <div class="mt-5" style="height:110px;background-color: rgb(59, 56, 56); padding-right: 1000px; padding-top: 30px;">
+                <footer>
+                        <ul style="list-style: none; color: white;">
+                            <li>You are not logged in</li>
+                            <li style="margin-left: -110px; color: white;"><a href="#"style="color: white;">Home</a></li>
+                            
+                        </ul>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+</body>
+</html> {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* style.css */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border: none;
+    width: 500px;
+}
+
+
+.form-control {
+    border: 2px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: #5c10a8;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #5c10a8;
+    border-color: #5c10a8;
+}
+
+.btn-primary:hover {
+    background-color: #410772;
+    border-color: #410772;
+}
+.card-header {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            
+            color: #410772;
+        }
+
+        .card-header img {
+            margin-left: 20px;
+            height: 100px;
+            width: auto;
+        }
+        body {
+    background-color: #f8f9fa;
+    height: 100vh; /* Set the body height to fill the viewport */
+    overflow: hidden; /* Hide overflow to prevent scroll bar */
+}
+
+
+    </style>
+</head>
+<body class="custom-bg" >
+    {% comment %} <nav class="navbar navbar-light bg-light" id="myNavbar" style="margin-top:5px;height: 70px">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-center align-items-center">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'images/miitlogo.png' %}" alt="MIIT logo" style="height: 80px; width: auto;">
+                </a>
+                <span class="navbar-text" style="font-size: 30px; color: #333;">
+                    Student Grading System
+                </span>
+            </div>
+        </div>
+    </nav> {% endcomment %}
+    <div class="container" style="margin-left: 100px;">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6">
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-header">
+                        <a class="navbar-brand" href="#">
+                            <img src="{% static 'images/miitlogo.png' %}" alt="MIIT logo" style="margin-top : -6px;height: 60px; width: auto;">
+                        </a>
+                        <span class="navbar-text" style="font-size: 30px;">
+                            Student Grading System
+                        </span>
+                        {% comment %} <span style="margin-left: 30px;font-size: larger;">Admin Login</span> {% endcomment %}
+                    </div>
+                    <div class="card-body" style="margin-left: 70px;">
+                        <form method="post" action="/signin">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Email</label>
+                                <input style="background-color: white;width: 300px;"type="username" class="form-control" id="username" name="username" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-3" >
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group" style="width: 300px;">
+                                    <input type="password" class="form-control" style="width: 200px;"id="password" name="password" placeholder="Enter your password">
+                                    <button class="btn btn-primary show-hide-password" type="button"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-danger" role="alert" style="width :300px; margin-top: 20px; height:55px;">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <button type="submit" class="btn btn-primary" style="width: 300px;height: 53px;margin-top: 20px;">LOG IN</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.show-hide-password').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var passwordField = this.parentElement.querySelector('.form-control');
+                var passwordType = passwordField.getAttribute('type');
+                if (passwordType === 'password') {
+                    passwordField.setAttribute('type', 'text');
+                    this.innerHTML = '<i class="bi bi-eye-slash"></i>';
+                } else {
+                    passwordField.setAttribute('type', 'password');
+                    this.innerHTML = '<i class="bi bi-eye"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

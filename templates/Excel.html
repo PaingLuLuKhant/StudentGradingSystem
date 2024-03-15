@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Excel File Upload</title>
+  <style>
+  .excel_container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .h1 {
+    text-align: center;
+    color: #333;
+  }
+  .form {
+    margin-top: 20px;
+  }
+  .input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  .upload-status {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+    {% load static %}
+    <div class="excel_container">
+      <h1 class="h1">Excel File Upload</h1>
+      <form class="form" id="excelUploadForm" enctype="multipart/form-data" method="post" action="/excel_import/">
+        {% csrf_token %}
+        <input class="input" type="file" name="excel_file" accept=".xls,.xlsx">
+        <button class="button" type="submit">Upload</button>
+      </form>
+      <div class="upload-status" id="uploadStatus"></div> <!-- Placeholder for upload status -->
+    </div>
+
+    <!-- Include the JavaScript code for handling the file upload -->
+    <script src="{% static 'js/excel.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7fa911e059.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Student Grading System</title>
+    <style>
+   
+               
+
+   .special-term-not-offered {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 992px) {
+    .table-group {
+        flex: 1 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .table-group {
+        flex: 1 0 calc(100% - 20px);
+    }
+}
+
+
+.tables-container {
+    display: flex;
+    flex-wrap : wrap;
+}
+
+.GradesContainer {
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-y: auto; /* Add vertical scroll if content exceeds the height */
+    flex-direction: column;
+    height: 650px; /* Set the height of each table */
+}
+
+/* Style for each grades table */
+.table-container {
+    
+    float: left;
+    width: 350px; /* Adjust to control the width of each table */
+    margin-left: 40px;
+    margin-bottom:20px;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    
+}
+
+
+      /* CSS for searchStudentPanel */
+        
+        
+    
+        /* Style for the student table */
+        .table {
+            width: 100%;
+            margin:0;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-family: Arial, sans-serif; /* Set preferred font family */
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            border: 1px solid #dddddd;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            color: #333; /* Darken header text color */
+            font-weight: bold;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tr:hover {
+            background-color: #f0f0f0; /* Light gray background on hover */
+        }
+
+        .table th, .table td {
+            border-bottom: 1px solid #dddddd; /* Add bottom border to cells */
+        }
+
+        .table td {
+            color: #555; /* Adjust text color */
+        }
+
+        .table th:first-child,
+        .table td:first-child {
+            padding-left: 20px; /* Add left padding for first column */
+        }
+
+        .table th:last-child,
+        .table td:last-child {
+            padding-right: 20px; /* Add right padding for last column */
+        }
+                 
+
+                /* Hide the default scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Create a custom scrollbar */
+        .scrollbar {
+            overflow-y: scroll; /* Add vertical scrollbar */
+            scrollbar-width: thin; /* "auto" or "thin" */
+            scrollbar-color: #a8a8a8 #f5f5f5; /* thumb color, track color */
+        }
+
+        /* Customize scrollbar track */
+        .scrollbar::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+
+        /* Customize scrollbar thumb */
+        .scrollbar::-webkit-scrollbar-thumb {
+            background-color: #a8a8a8;
+            border-radius: 10px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .parallax {
+            /* Add your parallax background image */
+            background-image: url('path/to/image.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* Add parallax effect */
+            transform: translateZ(0);
+            perspective: 1px;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            opacity: 0;
+        }
+
+        
+
+        
+                .text-white {
+                color: #ffffff !important;}
+                .searchStudentPanel {
+            margin-bottom: 20px; /* Adjust as needed */
+            }
+            /* Style for the search student panel in grades */
+            .searchStudentPanelInGrades {
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                margin-left: 350px;
+            }
+
+            .search-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .search-container h3 {
+                margin-top: 20px;
+                font-size: 1.2rem;
+                margin-right: 20px;
+            }
+
+            .search-input {
+                margin-top: 10px;
+                padding: 8px;
+                border: 1px solid #ccc; /* Light gray border */
+                border-radius: 5px;
+                flex: 1;
+            }
+
+            .btn-clear {
+                border: none;
+                margin-left: -40px;
+                margin-top: 10px;
+                background-color: transparent;
+                color: #888;
+                font-size: 30px;
+                cursor: pointer;
+                transition: color 0.3s ease;
+                
+            }
+
+            .btn-clear:hover {
+                color: #555;
+            }
+
+            .search-button {
+                margin-top: 20px;
+                background-color: #007bff; /* Blue button */
+                color: #fff; /* White text color */
+                border: none;
+                border-radius: 5px;
+                padding: 8px 12px;
+                margin-left: 50px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .search-button:hover {
+                background-color: #0056b3; /* Darker blue on hover */
+            }
+
+        /* student table container*/
+
+            .StudentsContainer{
+            margin-top: 30px;
+            }
+            .searchStudentPanel .inputcontainer {
+                width: 1300px;
+                position: relative;
+                flex: 1;
+                display: flex;
+                align-items: center;
+                
+            }
+            .inputcontainer input{
+                background-color: whitesmoke;
+                margin-left: 20px;
+                margin-top: 10px;
+                width: 300px;
+                padding: 8px;
+                border: 1px solid #ccc; /* Light gray border */
+                border-radius: 5px;
+                flex: 1;
+            }
+            .text-field {
+                
+                padding: 8px 30px 8px 8px; /* Add space on the right for the clear button */
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                width: 100%;
+            }
+            .search-box {
+                position: relative;
+                display: inline-block;
+            }
+            
+            .search-box input {
+                padding-right: 30px; /* Adjust as needed to make room for the clear button */
+            }
+            .btnclear {
+                position: absolute;
+                right: 2px; /* Adjust as needed */
+                margin-top: 2px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 33px; /* Adjust as needed */
+                color: #888; /* Adjust as needed */
+            }
+            {% comment %} .btnclear {
+                margin-right: 520px;
+                position: absolute;
+                right: 400px; /* Adjust as needed */
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: transparent;
+                border: none;
+                color: #888;
+                font-size: 40px;
+                cursor: pointer;
+            } {% endcomment %}
+
+            .search {
+                background-color: #007bff;
+                border: none;
+                color: #fff;
+                padding: 8px 12px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                margin-left: 20px;
+                margin-top: 10px;
+            }
+
+            .filterSection {
+                display: flex;
+                align-items: center;
+                border-left: 1px solid black; 
+                margin-left: 50px; /* Add some spacing between the search button and the filter section */
+            }
+
+            .filterSection label {
+                margin-left: 25px;
+                width: 120px;
+            }
+
+            .filterSection select {
+                padding: 5px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-left: 15px;
+            }
+
+            .filterSection button {
+                margin-left: 25px;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            .filterSection button:hover {
+                background-color: #0056b3; /* Darker shade on hover */
+            }
+            .searchStudentPanel .export_excel{
+                margin-right: 150px;
+            }
+            #cgpaFilterButton{
+                margin-top: 10px;
+                background-color: #007bff; /* Blue color */
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100px;
+            }
+            #cgpaFilter{
+                margin-top: 10px;
+
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+
+                width: 140px;
+            }
+            #export_excel_button {
+                margin-top: 10px;
+                background-color: #007bff; /* Blue color */
+                margin-right: 100px;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-left: 180px;
+                width: 175px;
+            }
+
+            #export_excel_button:hover {
+                background-color: #0056b3; /* Darker blue color on hover */
+            }
+            #filterStudentsButton {
+                background-color: #007bff; /* Button background color */
+                color: #fff; /* Button text color */
+                padding: 10px 20px; /* Button padding */
+                border: none; /* Remove button border */
+                border-radius: 5px; /* Add border radius to button */
+                cursor: pointer; /* Change cursor to pointer on hover */
+                font-size: 16px; /* Button text size */
+            }
+
+            #filterStudentsButton:hover {
+                background-color: #0056b3; /* Change background color on hover */
+            }
+            #filter_by_cgpa_text {
+                    width: 100px;
+                    color: #333; /* Text color */
+                    font-size: 14px; /* Font size */
+                    font-weight: bold; /* Font weight */
+            }
+
+    
+
+</style>
+    
+</head>
+<body style="width: auto;">
+    
+    <nav class="navbar navbar-light bg-light" id="myNavbar" style="height: auto;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="margin-right: 20px;margin-left: 30px;">
+                <img src="{% static 'images/miitlogo.png' %}" alt="MIIT logo" style="height: 80px; width: auto;">
+            </a>
+            <div class="navbar-text" style="font-size: 30px; margin-top: -10px; color: #333;">
+                Student Grading System
+            </div>
+            
+            <!-- Links in one line -->
+            <div class="d-flex justify-content-start align-items-center" style="margin-left: 400px;">
+                
+                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#excel_import" style="display: inline-flex;">
+                    <i class="fa-solid fa-file-import" style="margin-right: 5px;margin-top: 5px; font-size:24px;"></i>
+                    <span class="d-none d-lg-inline" style="font-size:20px;">Import Excel</span>
+                </a>
+            </div>
+            <div class="adminLogoDropDown" style="margin-right: 60px;">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" style="font-size: 36px;">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="margin-right: 20px;margin-top: -30px;">
+                    <li class="dropdown-item"><i class="fa-solid fa-gauge"></i> Dashboard</li>
+                    <li class="dropdown-item"><i class="fa-regular fa-user"></i> Profile</li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item">
+                        <a href="{% url 'signout' %}" class="dropdown-item">
+                            <i class="fa-solid fa-right-from-bracket" style="margin-left: -14px;"></i>
+                            <span style="margin-left: -3px;">Log out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
+    
+    <div class="row" >
+        <div class="modal fade excel-import-modal" id="excel_import">
+            <div class="modal-dialog">
+                <div class="modal-content">
+        
+                    <div class="modal-header text-white" style="background-color: rgb(92,  16,  168);">
+                        <h5 class="modal-title">Import an Excel File</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row gx-3">
+                            <div class="col-md-3">
+                                <!-- Form for Semesters -->
+                                <h5 class="mb-3">For Semesters :</h5>
+                                <form id="excelUploadFormSemesters" enctype="multipart/form-data" method="post" action="/excel_import/">
+                                    {% csrf_token %}
+                                    <div class="mb-2">
+                                        <label for="semester_excel_file" class="form-label">Select Excel File</label>
+                                        <input type="file" id="semester_excel_file" name="excel_file" class="form-control form-control-sm" accept=".xls,.xlsx">
+                                        <input type="hidden" name="upload_type" value="semesters">
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-sm">Upload</button>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Form for Students -->
+                                <h5 class="mb-3">For Students:</h5>
+                                <form id="excelUploadFormStudents" enctype="multipart/form-data" method="post" action="/excel_import/">
+                                    {% csrf_token %}
+                                    <div class="mb-2">
+                                        <label for="student_excel_file" class="form-label">Select Excel File</label>
+                                        <input type="file" id="student_excel_file" name="excel_file" class="form-control form-control-sm" accept=".xls,.xlsx">
+                                        <input type="hidden" name="upload_type" value="students">
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-sm">Upload</button>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Form for Courses -->
+                                <h5 class="mb-3">For Courses:</h5>
+                                <form id="excelUploadFormCourses" enctype="multipart/form-data" method="post" action="/excel_import/">
+                                    {% csrf_token %}
+                                    <div class="mb-2">
+                                        <label for="course_excel_file" class="form-label">Select Excel File</label>
+                                        <input type="file" id="course_excel_file" name="excel_file" class="form-control form-control-sm" accept=".xls,.xlsx">
+                                        <input type="hidden" name="upload_type" value="courses">
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-sm">Upload</button>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Form for Enrollments -->
+                                <h5 class="mb-3">For Enrollments:</h5>
+                                <form id="excelUploadFormEnrollment" enctype="multipart/form-data" method="post" action="/excel_import/">
+                                    {% csrf_token %}
+                                    <div class="mb-2">
+                                        <label for="enrollment_excel_file" class="form-label">Select Excel File</label>
+                                        <input type="file" id="enrollment_excel_file" name="excel_file" class="form-control form-control-sm" accept=".xls,.xlsx">
+                                        <input type="hidden" name="upload_type" value="enrollment">
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-sm">Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <p id="responseTextforStudent"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <main class="col-md-6" style="width:  1260px; float:right; margin:  50px auto; height:  1000px; background-color: whitesmoke; border-radius:  10px;">
+            <div class="row" style="margin-top:  50px;">
+                <div class="card col-md-4" style="width:300px; margin-left:330px; border-radius:  10px; box-shadow:  0  26px  58px  0 rgba(0,  0,  0, .22),  0  5px  14px  0 rgba(0,  0,  0, .18);">
+                    <div class="image-container p-3" style="margin:auto;">
+                        <i class="text-center fa-solid fa-user-graduate fa-3x card-icons"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Students</h5>
+                        <p class="card-text">See all the Students from each batch.</p>
+                    </div>
+                    <div class="card-footer home-card text-center">
+
+                        <button class="students btn btn-lg btn-primary mt-3 w-100"  
+                            style="text-decoration: white; background-color: rgb(92,  16,  168); width:  100px;height: 50px;margin-bottom: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#batch-select"
+                            id="studentButton">
+                            Student
+                        </button>
+                    </div>
+                </div>
+        
+                <div class="card col-md-4" style="width:300px; margin-left:100px; border-radius:  10px; box-shadow:  0  26px  58px  0 rgba(0,  0,  0, .22),  0  5px  14px  0 rgba(0,  0,  0, .18);">                    
+                    <div class="image-container p-3" style="margin:auto;">
+                        <i class="text-center fa-solid fa-newspaper fa-3x card-icons"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Grades</h5>
+                        <p class="card-text">See all grades of a student from any batch.</p>
+                    </div>
+                    <div class=" card-footer home-card text-center">
+                        <button class="grades btn btn btn-lg btn-primary mt-3 w-100" 
+                            style="height: 50px;margin-bottom: 10px;text-decoration: white; background-color: rgb(92,  16,  168); width:  100px;"
+                            id="gradeButton">
+                            Grades
+                        </button>
+                    </div>
+                </div>
+        
+                
+                
+                <div class="modal fade" id="batch-select">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+    
+                            <div class="modal-header">
+                                <h5 class="modal-title">Choose a Batch</h5>
+                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="batch">Select Batch:</label>
+                                    <select id="batch" class="form-select mb-3">
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Choose Major(s):</label>
+                                    <div style="margin-top: 10px;margin-bottom: 20px;">
+                                        <input type="radio" id="cseMajor" name="major" value="CSE" pointer="cursor">
+                                        <label for="cseMajor">CSE</label>
+                                    </div>
+                                    <div style="margin-bottom: 20px;">
+                                        <input type="radio" id="eceMajor" name="major" value="ECE">
+                                        <label for="eceMajor">ECE</label>
+                                    </div>
+                                    <div style="margin-bottom: 20px;">
+                                        <input type="radio" id="bothMajor" name="major" value="bothMajor" checked>
+                                        <label for="bothMajor">Both CSE and ECE</label>
+                                    </div>
+                                </div>
+                                <button id="filterStudentsButton">Filter Students</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="StudentsContainer" id="StudentsContainer">
+                
+            </div>
+            
+
+            <div class="GradesContainer" style="display: none;">
+                <div class="searchStudentPanelInGrades">
+                    <div class="search-container">
+                        <h3>Search a student</h3>
+                        <div class="input-container">
+                            <input type="text" placeholder="20xx-miit-xxx-xxx" class="search-input">
+                            <button class="btn-clear" type="button">&times;</button>
+                        </div>
+                        <button class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="gradesTablesContainer">
+                    {% comment %} contents created dynamically by js {% endcomment %}
+                </div>
+            </div>
+
+            <div class="RecommendContainer" style="display: none;">
+                <div class="cgpaDivInRecommend">
+
+                </div>
+                <div class="okButtonDiv">
+                    
+                </div>
+                <div class="gradeWeightDiv">
+
+                </div>
+
+            </div>
+            
+            <div class='export-excel'>
+                {% comment %} <div>
+                    <button id="export_excel_button">Export Student List</button>
+                </div> {% endcomment %}
+                {% comment %} <form id="export-form">
+                    <label for="student-roll-number">Student Roll Number:</label>
+                    <input type="text" id="student-roll-number" name="student_roll_number">
+                    <label for="min-cgpa">Minimum CGPA:</label>
+                    <input type="number" id="min-cgpa" name="min_cgpa" step="0.01" min="0" max="4" default='0.0'>
+                    <label for="max-cgpa">Maximum CGPA:</label>
+                    <input type="number" id="max-cgpa" name="max_cgpa" step="0.01" min="0" max="4" default='4.0'>
+                    <button type="submit">Export Enrollment Data</button>
+                </form> {% endcomment %}
+                
+                
+            </div> 
+        </main>
+    </div>
+    <script>
+        document.getElementById('export-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const studentRollNumber = document.getElementById('student-roll-number').value;
+            const minCgpa = document.getElementById('min-cgpa').value;
+            const maxCgpa = document.getElementById('max-cgpa').value;
+            const queryParams = new URLSearchParams({
+                student_roll_number: studentRollNumber,
+                min_cgpa: minCgpa,
+                max_cgpa: maxCgpa
+            }).toString();
+            window.location.href = `/export_enrollment_data/?${queryParams}`;
+        });
+        </script>
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/excel.js' %}"></script>
+    
+</body>
+</html>
