@@ -284,11 +284,15 @@ def export_students_to_excel(request):
 
     # Retrieve the data dictionary from the session
     data_dict = request.session.get('dictToExport', {})
+    print(data_dict)
+
     if is_export_request:
-        try:
-            data_dict_sorted = sorted(data_dict, key=lambda x: x['roll_number'].split('-')[2])
+        try:          
+            data_dict_sorted = sorted(data_dict, key=lambda x: (x['roll_number'].split('-')[2][:3], x['roll_number'].split('-')[3]))
+
             for student in data_dict_sorted:
-                student['cgpa'] = round(student['cgpa'],3)
+                student['cgpa'] = round(student['cgpa'], 3)
+
             # Convert the dictionary to a pandas DataFrame
             df = pd.DataFrame(data_dict_sorted)
             # Create a response object with the appropriate content type
